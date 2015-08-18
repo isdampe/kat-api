@@ -1,5 +1,5 @@
 {
-  "name": "kat-api",
+  "name": "kat-api-json",
   "version": "1.0.0",
   "description": "A small library for running basic queries on Kickass Torrents' API",
   "main": "kat-api.js",
