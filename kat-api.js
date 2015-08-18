@@ -32,8 +32,34 @@
     
     //Generate the URL to request.
     requestUri = this.generateRequestUri(parameters);
-
+    
     //Make the request.
+    request(requestUri, function(err, res, body) {
+
+      var jsonResults;
+
+      //Catch errors.
+      if (err) {
+        callback(err);
+        return false;
+      }
+      
+      //Catch server error.
+      if ( res.statusCode !== 200 ) {
+        callback(new Error("Unsafe status code ( " + res.statusCode + ")  when making request to " + requestUri));
+        return false;
+      }
+
+      try {
+        jsonResults = JSON.parse(body);
+      } catch(e) {
+        callback(e);
+        return false;
+      }
+      
+      callback(null,jsonResults);
+
+    });
 
 
   };
